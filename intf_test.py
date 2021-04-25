@@ -10,6 +10,10 @@ from requests.adapters import HTTPAdapter
 
 MP_KEY = 'e10adc3949ba59abbe56e057f20f883e' #数字签名校验码
 
+#得到yyyy-mm-dd hh:ss:nn格式的字符串
+def fmt_now_time():
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 #根据输入字符串生成一个md5串
 def getmd5(str):
     m1 = hashlib.md5()
@@ -22,35 +26,6 @@ def create_sig(url_in, front_type_in, time_stamp_in):
     chenk_md5 = getmd5(str)
     return chenk_md5
 
-#调用http接口
-#request_addr 接口地址，如http://168.0.0.80:8001
-#request_url url地址，如 /login/add
-#MP_KEY 秘钥
-#requestBody 请求的json数据 
-#db_name 连接的数据库名称
-#soft_type 软件类型pc或app
-def request_http_intf(request_addr, request_url, requestBody, soft_type='pc'):
-    time_stamp = str(round(time.mktime(datetime.datetime.now().timetuple())))
-    sig = create_sig(request_url, soft_type, time_stamp)
-    s = requests.Session()
-    s.mount('http://', HTTPAdapter(max_retries=3))
-    s.mount('https://', HTTPAdapter(max_retries=3))
-    s.keep_alive = False # 关闭多余连接
-    header = {}
-    header["Content-Type"] = 'application/json; charset=utf-8'
-    header["MP-TIMESTAMP"] = time_stamp  
-    header["MP-FRONT-TYPE"] = soft_type 
-    header["MP-SIG"] = sig
-    rsp = s.post(request_addr + request_url, data=json.dumps(requestBody), headers=header)     
-    ret_json = json.loads(rsp.text)
-    if rsp.status_code == 200:
-        if not 'errmsg' in ret_json.keys():
-            return True, ret_json['return_result']
-        else:
-            return False, ret_json["errmsg"]
-    else:
-        return False, rsp.text
-
 def Calc_Run_Time(func):            #计算用时的函数装饰器
     def wrapper(*args,**kwargs): 
         local_time = time.time();          res=func(*args, **kwargs)
@@ -58,43 +33,57 @@ def Calc_Run_Time(func):            #计算用时的函数装饰器
     return wrapper
 
 @Calc_Run_Time
-def get_new_price(test_dt):
+def get_info():
     request_addr = 'http://127.0.0.1:8005'
-    request_url = '/get_price'  #写入策略信息
     #日数据
-    requestBody = {
-        "security": "btc.usdt",
-        "end_date": test_dt,
-        "frequency": "1m",
-        "count":1,
-        "fields":[
-            "close"
-        ]
-    }
-    ret, res = request_http_intf(request_addr, request_url, requestBody)
-    if ret:    
-        df = pd.DataFrame.from_dict(res, orient='index')   
-        df.index = pd.to_datetime(df.index, unit='ms')    
-        print(df)
+    df=pd.DataFrame()
+    time_stamp = str(round(time.mktime(datetime.datetime.now().timetuple())))
+    sig = create_sig('/info', "pc", time_stamp)
+    header = {}
+    header["Content-Type"] = 'application/json; charset=utf-8' 
+    header["MP-SIG"] = sig    
+    header["MP-TIMESTAMP"] = time_stamp   
+    header["MP-FRONT-TYPE"] = "pc"    
+    res = requests.post(url=request_addr + "/info", json={}, headers=header) 
+    rstr = json.loads(res._content) 
+    if 'return_result' in rstr.keys():       
+        df = pd.DataFrame.from_dict(rstr['return_result'], orient='index')
+        if len(df) == 0: 
+            return df      #df为空直接返回
+        return df
     else:
-        print(res)
+        print(rstr)  
 
-@Calc_Run_Time
-def get_info(test_dt):
+def get_price(security, start_date=None, end_date=None, frequency='1d', fields=None, count=None, fq='pre'):
     request_addr = 'http://127.0.0.1:8005'
-    request_url = '/info'  #写入策略信息
-    #日数据
-    requestBody = {}
-    ret, res = request_http_intf(request_addr, request_url, requestBody)
-    if ret:    
-        df = pd.DataFrame.from_dict(res, orient='index')   
-        #df.index = pd.to_datetime(df.index, unit='ms')    
-        print(df)
-    else:
-        print(res)
+    time_stamp = str(round(time.mktime(datetime.datetime.now().timetuple())))
+    df=pd.DataFrame()
+    sig = create_sig('/get_price', "pc", time_stamp)
+    header = {}
+    header["Content-Type"] = 'application/json; charset=utf-8' 
+    header["MP-SIG"] = sig    
+    header["MP-TIMESTAMP"] = time_stamp   
+    header["MP-FRONT-TYPE"] = "pc"            
+    
+    start_date=fmt_now_time() if start_date else None       
+    end_date=fmt_now_time() if end_date else None   
+    post_data = {'security':security, 'start_date': start_date, 'end_date': end_date, 'count': count, 'frequency': frequency,'fields':fields,'fq':fq }    
+
+    try: 
+        res = requests.post(url=request_addr + "/get_price", json=post_data, headers=header)  
+    except: 
+        return df
+    rstr = json.loads(res._content) 
+    if 'return_result' in rstr.keys():       
+        df = pd.DataFrame.from_dict(rstr['return_result'], orient='index')
+        if len(df)==0: 
+            return df      #df为空直接返回
+        df.index=pd.to_datetime(df.index, unit='ms');    
+        return df    
 
 # 程序入口函数
 if __name__ == "__main__":
-    test_dt = '2021-04-25 09:00:01'
-    get_new_price(test_dt)
-    get_info(test_dt)
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=1, frequency='1m', fields=['close'])
+    print(df)
+    df = get_info()
+    print(df)
