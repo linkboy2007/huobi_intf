@@ -5,7 +5,6 @@ import uuid
 import string
 import random
 import json
-from public.pubvar import *
 from public.const import *
 
 

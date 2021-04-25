@@ -3,7 +3,7 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.options
 import tornado.web
-from tornado.options import define, options
+from tornado.options import options
 import tornado.autoreload
 import os
 from urls import urls

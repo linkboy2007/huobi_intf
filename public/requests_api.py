@@ -2,7 +2,6 @@
 import hashlib
 import datetime 
 import time
-import os
 import json
 import requests
 from public.const import *
