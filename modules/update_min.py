@@ -2,8 +2,6 @@
 import tornado.gen
 import tornado.ioloop
 import tornado.web
-import json
-import copy
 from public.basic_class import BaseHandle
 from public.const import *
 from public.pubfunc import *

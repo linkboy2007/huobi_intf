@@ -2,11 +2,12 @@
 import hashlib
 import datetime 
 import time
-import os
 import pandas as pd
 import json
 import requests
-from requests.adapters import HTTPAdapter
+#这两个参数的默认设置都是False
+pd.set_option('display.unicode.ambiguous_as_wide', True)
+pd.set_option('display.unicode.east_asian_width', True)
 
 MP_KEY = 'e10adc3949ba59abbe56e057f20f883e' #数字签名校验码
 
@@ -83,7 +84,18 @@ def get_price(security, start_date=None, end_date=None, frequency='1d', fields=N
 
 # 程序入口函数
 if __name__ == "__main__":
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=1, frequency='1m', fields=['close'])
+    #1分钟的数据获取
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=1, frequency='1m', fields=['open','close', 'low', 'high'])
     print(df)
+    #日线的数据获取
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1d', fields=['open','close', 'low', 'high'])
+    print(df)
+    #4小时的数据获取
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='4h', fields=['open','close', 'low', 'high'])
+    print(df)
+    #1小时的数据获取
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='60m', fields=['open','close', 'low', 'high'])
+    print(df)
+    #取到btc和eth的实时分钟线数据
     df = get_info()
     print(df)

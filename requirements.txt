@@ -1,5 +1,4 @@
 tornado
-python-dateutil==2.7.3
 requests
 pandas==0.25.3
 websocket-client

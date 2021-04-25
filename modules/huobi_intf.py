@@ -2,7 +2,6 @@
 import tornado.gen
 import tornado.ioloop
 import tornado.web
-import json
 import copy
 from tornado.escape import json_decode
 from public.basic_class import BaseHandle
@@ -10,8 +9,6 @@ from public.const import *
 from public.pubfunc import *
 from .jq_func import *
 from modules.huobi_func import *
-from tornado.concurrent import run_on_executor
-from concurrent.futures import ThreadPoolExecutor
 
 class GetHuobiPrice(BaseHandle):
     """通过火币网查询数字货币数据
