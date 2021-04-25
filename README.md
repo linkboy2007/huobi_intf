@@ -1,10 +1,10 @@
 # huobi_intf
 提供火币网的获取数据的接口，可用于实盘交易和模拟交易
 
-python的版本
+### python的版本
 ●python >= 3.6
 
-需要的三方控件
+### 需要的三方控件
 ●pip install requirements.txt
 
 get_price接口得到火币的币的数据，返回dataframe的格式
