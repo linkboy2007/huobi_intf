@@ -30,9 +30,3 @@ class AESUtil:
         ret = str(msg, encoding='utf-8')
         ret = ret.strip()
         return ret.replace('\0','').replace('\x01', '').replace('\x05', '').replace('\x06', '').replace('\x07', '').replace('\x0e', '')
-
-if __name__ == "__main__":
-    key = "mpsoftsaasmem812"
-    res = AESUtil.encryt("Hello World", key)
-    print(res) #AAB208AC5D2CC7159D50A7411A7BDFE8
-    print(AESUtil.decrypt(res, key)) # Hello World
