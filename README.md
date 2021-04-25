@@ -7,6 +7,7 @@
 ### 需要的三方控件
 ●pip install requirements.txt
 
+### 接口说明
 get_price接口得到火币的币的数据，返回dataframe的格式
 
 info接口返回btc和eth的实时close价格，在浏览器里输入http://ip:8005/info可以看到网页格式的数据
