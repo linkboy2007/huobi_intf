@@ -35,7 +35,8 @@ btc.usdt 最新价格 53609.16
 ```
 3、intf_test.py里有调用这个两个接口的例子
 ```python
-    test_dt = '2021-04-25 09:00:01'
-    get_new_price(test_dt)
-    get_info(test_dt)
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=1, frequency='1m', fields=['close'])
+    print(df)
+    df = get_info()
+    print(df)
 ```
