@@ -98,5 +98,3 @@ if __name__ == "__main__":
     test_dt = '2021-04-25 09:00:01'
     get_new_price(test_dt)
     get_info(test_dt)
-
-    
