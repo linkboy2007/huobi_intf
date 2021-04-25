@@ -30,3 +30,9 @@ btc.usdt 最新价格 53609.16
 1  btc.usdt  50115.19  2021-04-25 09:39:26
 2  eth.usdt   2235.95  2021-04-25 09:39:27
 ```
+3、intf_test.py里有调用这个两个接口的例子
+```python
+    test_dt = '2021-04-25 09:00:01'
+    get_new_price(test_dt)
+    get_info(test_dt)
+```
