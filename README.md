@@ -8,12 +8,8 @@
 ●pip install requirements.txt
 
 ### 接口说明
-get_price接口得到火币的币的数据，返回dataframe的格式
+1、get_price接口得到火币的币的数据，返回dataframe的格式
 
-info接口返回btc和eth的实时close价格，在浏览器里输入http://ip:8005/info可以看到网页格式的数据
-
-接口说明:
-1、取得火币网币的数据的接口get_price
 ```python
 code='btc.usdt'
 print(code,'最新价格',get_last_price(code))
@@ -31,7 +27,7 @@ btc.usdt 最新价格 53609.16
 2021-04-22 12:00:00	53506.68	54141.42	54850.00	53456.72	2.157972e+08
 2021-04-22 16:00:00	54144.03	53609.17	54260.05	53609.16	4.257941e+07
 ```
-2、显示btc和eth的实时close价格的接口info
+2、显示btc和eth的实时close价格的接口info，返回dataframe的格式
 ```python
      币名称      close                 时间
 1  btc.usdt  50115.19  2021-04-25 09:39:26
