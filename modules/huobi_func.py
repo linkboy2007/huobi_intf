@@ -1,8 +1,6 @@
 #-*- coding:utf-8 -*-
-import hashlib
 import datetime 
 import time
-from datetime import timedelta
 import json
 import math
 import requests

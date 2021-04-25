@@ -52,17 +52,8 @@ default_linesperpage = 20
 #操作员Token间隔时间8小时 单位:秒 28800秒
 TOKEN_TIME = 8 * 60 * 60;
 
-#会员Token有效时间30天
-MEMBER_TOKEN_TIME = 30 * 24 * 60 * 60;
-
 #客户端时间与服务器时间的最大差值 5分钟
 TIME_DIFF = 5 * 60
-
-#数据库连接的有效期7个小时
-CONN_TOKEN_TIME = 7 * 60 * 60;
-
-#人脸识别判断两个人脸图片是否是一个人的阈值
-FACE_THRESHOLD = 0.35
 
 #下边是常量字符串定义
 MP_TIMESTAMP = 'MP-TIMESTAMP'           #接口发过来的时间戳
