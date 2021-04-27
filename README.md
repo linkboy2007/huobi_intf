@@ -2,7 +2,6 @@
 
 提供火币网的获取数据的接口，可用于实盘交易和模拟交易
 行情数据，是一切量化交易的基础，本封装用一个函数解决获取数字货币所有币种的实时行情
-数据放入pandas中，剩下的如何使用，分析就是简单了！
 
 ### python的版本
 ●python >= 3.6
@@ -28,7 +27,7 @@ df = get_info()
 print(df)
 ```
 
-## btc1分钟线
+## btc的1分钟线
 ![btc1min](/img/btc_1min.png)
 
 ## btc日线
@@ -37,7 +36,7 @@ print(df)
 ## btc的4小时线
 ![btc小时线](/img/btc_4hour.png)
 
-## btc60分钟线
+## btc的60分钟线
 ![btc60min](/img/btc_60min.png)
 
 2、显示btc和eth的实时close价格的接口info，返回dataframe的格式
