@@ -13,15 +13,19 @@
 #1分钟的数据获取
 df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=1, frequency='1m')
 print(df)
+
 #日线的数据获取
 df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=10, frequency='1d')
 print(df)
+
 #4小时的数据获取
 df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=10, frequency='4h')
 print(df)
+
 #1小时的数据获取
 df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=10, frequency='60m')
 print(df)
+
 #取到btc和eth的实时分钟线数据
 df = get_info()
 print(df)
