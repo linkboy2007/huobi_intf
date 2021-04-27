@@ -85,7 +85,7 @@ def get_price(security, start_date=None, end_date=None, frequency='1d', fields=N
 # 程序入口函数
 if __name__ == "__main__":
     #1分钟的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=1, frequency='1m', fields=['open','close', 'low', 'high'])
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1m', fields=['open','close', 'low', 'high'])
     print(df)
     #日线的数据获取
     df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1d', fields=['open','close', 'low', 'high'])
