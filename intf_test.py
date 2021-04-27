@@ -55,7 +55,7 @@ def get_info():
     else:
         print(rstr)  
 
-def get_price(security, start_date=None, end_date=None, frequency='1d', fields=None, count=None, fq='pre'):
+def get_price(security, start_date=None, end_date=None, frequency='1d', fields=['open','close', 'low', 'high'], count=None, fq='pre'):
     request_addr = 'http://127.0.0.1:8005'
     time_stamp = str(round(time.mktime(datetime.datetime.now().timetuple())))
     df=pd.DataFrame()
@@ -85,16 +85,16 @@ def get_price(security, start_date=None, end_date=None, frequency='1d', fields=N
 # 程序入口函数
 if __name__ == "__main__":
     #1分钟的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1m', fields=['open','close', 'low', 'high'])
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1m')
     print(df)
     #日线的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1d', fields=['open','close', 'low', 'high'])
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1d')
     print(df)
     #4小时的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='4h', fields=['open','close', 'low', 'high'])
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='4h')
     print(df)
     #1小时的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='60m', fields=['open','close', 'low', 'high'])
+    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='60m')
     print(df)
     #取到btc和eth的实时分钟线数据
     df = get_info()
