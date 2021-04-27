@@ -7,15 +7,6 @@
 ### python的版本
 ●python >= 3.6
 
-### 需要的三方控件
-●tornado
-
-●requests
-
-●pandas==0.25.3
-
-●websocket-client
-
 ### 接口说明
 1、get_price接口得到火币的币的数据，返回dataframe的格式
 
@@ -24,6 +15,7 @@ code='btc.usdt'
 print(code,'最新价格',get_last_price(code))
 df=get_price(code,count=5,frequency='4h');      #1d:1天  4h:4小时   60m: 60分钟    15m:15分钟
 print(df)
+```
 
 ## btc日线
 ![btc日线](/img/btc_1day.png)
@@ -47,3 +39,16 @@ print(df)
     df = get_info()
     print(df)
 ```
+
+## 需安装第三方库
+* requests
+* pandas
+* tornado
+* websocket-client
+ 
+
+----------------------------------------------------
+### 巴特量化(BestQuant)：数字货币 股市量化工具 行情系统软件提供商
+----------------------------------------------------
+
+![加入群聊](/img/qrcode.png) 
