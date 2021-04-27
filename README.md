@@ -6,6 +6,7 @@
 
 ### 服务器启动说明
 运行文件huobi_app.py启动服务，服务启动后就可以用程序调用所有的接口
+python3 huobi_app.py --port=8005
 
 ### python的版本
 * python >= 3.6
@@ -15,6 +16,7 @@
 * pandas
 * tornado
 * websocket-client
+安装时执行命令:pip install -r requirements.txt
 
 ### 接口说明
 1、get_price接口得到火币的币的数据，返回dataframe的格式
