@@ -10,6 +10,12 @@
 ### python的版本
 * python >= 3.6
 
+## 需安装第三方库
+* requests
+* pandas
+* tornado
+* websocket-client
+
 ### 接口说明
 1、get_price接口得到火币的币的数据，返回dataframe的格式
 
@@ -52,13 +58,6 @@ print(df)
 ![test](/img/test.png)
 
 3、intf_test.py里有调用这个两个接口的例子
-
-## 需安装第三方库
-* requests
-* pandas
-* tornado
-* websocket-client
- 
 
 ----------------------------------------------------
 ### 巴特量化(BestQuant)：数字货币 股市量化工具 行情系统软件提供商
