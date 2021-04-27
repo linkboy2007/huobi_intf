@@ -24,21 +24,10 @@ print(df)
 ![btc小时线](/img/btc_4hour.png)
 
 2、显示btc和eth的实时close价格的接口info，返回dataframe的格式
-
-```python
-     币名称      close                 时间
-1  btc.usdt  50115.19  2021-04-25 09:39:26
-2  eth.usdt   2235.95  2021-04-25 09:39:27
-```
+![test](/img/test.png)
 
 3、intf_test.py里有调用这个两个接口的例子
-
-```python
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=1, frequency='1m', fields=['close'])
-    print(df)
-    df = get_info()
-    print(df)
-```
+![code](/img/code.png)
 
 ## 需安装第三方库
 * requests
