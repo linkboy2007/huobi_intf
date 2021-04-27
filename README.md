@@ -11,28 +11,34 @@
 1、get_price接口得到火币的币的数据，返回dataframe的格式
 
 ```python
-    #1分钟的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=1, frequency='1m', fields=['open','close', 'low', 'high'])
-    print(df)
-    #日线的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='1d', fields=['open','close', 'low', 'high'])
-    print(df)
-    #4小时的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='4h', fields=['open','close', 'low', 'high'])
-    print(df)
-    #1小时的数据获取
-    df = get_price('btc.usdt', end_date=fmt_now_time(), count=10, frequency='60m', fields=['open','close', 'low', 'high'])
-    print(df)
-    #取到btc和eth的实时分钟线数据
-    df = get_info()
-    print(df)
+#1分钟的数据获取
+df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=1, frequency='1m', fields=['open','close', 'low', 'high'])
+print(df)
+#日线的数据获取
+df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=10, frequency='1d', fields=['open','close', 'low', 'high'])
+print(df)
+#4小时的数据获取
+df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=10, frequency='4h', fields=['open','close', 'low', 'high'])
+print(df)
+#1小时的数据获取
+df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=10, frequency='60m', fields=['open','close', 'low', 'high'])
+print(df)
+#取到btc和eth的实时分钟线数据
+df = get_info()
+print(df)
 ```
+
+## btc1分钟线
+![btc1min](/img/btc_1min.png)
 
 ## btc日线
 ![btc日线](/img/btc_1day.png)
  
 ## btc的4小时线
 ![btc小时线](/img/btc_4hour.png)
+
+## btc60分钟线
+![btc60min](/img/btc_60min.png)
 
 2、显示btc和eth的实时close价格的接口info，返回dataframe的格式
 
