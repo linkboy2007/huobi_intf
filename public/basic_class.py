@@ -35,7 +35,7 @@ class BaseHandle(tornado.web.RequestHandler):
     #这样的错误是数据引起的
     def write_error(self, status_code, **kwargs):
         print('write_error:', status_code, kwargs)
-        self.write({'error:':'write_error: ' + str(status_code)})           
+        self.write(err_json(str(kwargs), status_code))          
     
     #验证token和时间戳
     def prepare(self):
