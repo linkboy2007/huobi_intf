@@ -74,9 +74,7 @@ df = get_price('btc.usdt', end_date='2021-04-25 18:56:23', count=10, frequency='
 ![btc小时线](/img/btc_4hour.png)
 
 
-2、显示btc和eth的实时close价格的接口info，返回dataframe的格式
 
-![test](/img/test.png)
 
 3、intf_test.py里有调用这个两个接口的例子
 
