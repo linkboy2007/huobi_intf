@@ -31,7 +31,7 @@
 
 ### 服务器启动说明
 运行文件huobi_app.py启动服务，服务启动后就可以用程序调用所有的接口  
-python3 huobi_app.py         #可选运行参数  --port=8005  
+<b> python3 huobi_app.py  </b>       #可选运行参数  --port=8005  
 启动成功后，在浏览器里输入`http://127.0.0.1:8005/info`，如果能出现下边的画面，说明启动成功了  
 ![info](/img/info.png)
 
